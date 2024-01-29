@@ -23,7 +23,8 @@ html, body {
     align-items: center;
     row-gap: 1rem;
 
-    width: 90%;
+    /* width: 90%; */
+    max-width: 320px;
     margin: 30px auto;
 }
 
@@ -69,6 +70,10 @@ p{
     height: 90px;
     
     /* background: url(freddie); */
+}
+
+.div-inputs {
+    max-width: 320px;
 }
 
 /* Text Area */
@@ -134,7 +139,7 @@ button {
 }
 
 #feeds {
-    width: 536px;
+    max-width: 320px;
 
     display: flex;
     flex-direction: column;
@@ -149,7 +154,7 @@ button {
     align-items: start;
     row-gap: 0.5rem;
     
-    width: 100%;
+    /* width: 100%; */
     padding: 0.7rem;
 
     font-family: 'Inter';
