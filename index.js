@@ -1,8 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
 import { getDatabase, ref, push, update, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
-// import {appSettings ,DATABASE_NAME} from './firebaseConfig.js'
+import {appSettings ,DATABASE_NAME} from './firebaseConfig.js'
 
-const app = initializeApp(APPSETTINGS)
+const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const feedsInDB = ref(database, DATABASE_NAME)
 
