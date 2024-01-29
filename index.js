@@ -72,22 +72,6 @@ addButtonEl.addEventListener("click", function() {
     feeds.push(feed);
     console.log(feeds)
 
-    // const likeEl = document.getElementById(`card-like-${feeds.length-1}`)
-    // const likeImgEl = document.getElementById(`like-${feeds.length-1}`)
-    // const likeValueEl = document.getElementById(`like-value-${feeds.length-1}`)
-    // likeEl.addEventListener("click", function() {
-    //     console.log(`pressed like of card ${feeds.length-1}`)
-    //     if (localStorage.getItem(`likeHasBeenClicked[${feeds.length-1}]`))
-    //         alert('You"ve already put like on this feed!')
-    //     else {
-    //         localStorage.setItem(`likeHasBeenClicked[${feeds.length-1}]`, true)
-    //         likeImgEl.setAttribute('src', './assets/heart-like-full.svg')
-    //         likeValueEl.textContent = Number(likeValueEl.textContent) + 1
-    //         // feeds[feeds.length].likes += 1
-    //         console.log(feeds)
-    //     }
-    // })
-
     const cardsEL = document.querySelectorAll('.card')
     cardsEL.forEach((card,index) => {
         const likeEl = document.getElementById(`card-like-${index}`)
