@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push, update, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, update, remove, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 import {appSettings ,DATABASE_NAME} from './firebaseConfig.js'
 
 const app = initializeApp(appSettings)
@@ -61,22 +61,6 @@ function clearInputFieldEl() {
     textAreadEl.value = ''
     inputFromEl.value = ''
     inputToEl.value = ''
-}
-
-function createCardVisualization(inputToValue,textAreaValue,inputFromValue) {
-    const container = document.getElementById("feeds")
-
-    container.innerHTML += `<div class="card" id='card-${feeds.length}'>
-                    <h3 id='card-to-${feeds.length}'>To ${inputToValue}</h3>
-                    <p id='card-endorsement-${feeds.length}'>${textAreaValue}</p>
-                    <div class='card-footer'>
-                        <h3 id='card-from-${feeds.length}'>From ${inputFromValue}</h3>
-                        <div class='card-like' id='card-like-${feeds.length}'>
-                            <img alt='like' class='like' id='like-${feeds.length}' src='./assets/heart-like-empty.svg' height="15px"/>
-                            <span id='like-value-${feeds.length}'>${0}</span>
-                        </div>
-                    </div>
-                </div>`
 }
 
 function createCardDB(inputToValue,textAreaValue,inputFromValue) {
@@ -150,7 +134,13 @@ function appendCardToFeedEl(item) {
             else
                 cardLikeImgEl.setAttribute('src', './assets/heart-like-empty.svg')
         cardLikeEl.append(cardLikeImgEl)
-        
+    
+        let deleteEl = document.createElement("button")
+            deleteEl.setAttribute('class', `btn-delete`)
+            deleteEl.setAttribute('id', `delete-card${itemID}`)
+            deleteEl.textContent = 'Delete'
+            cardFromEl.after(deleteEl)   
+
         let cardLikeValueEl = document.createElement("span")
             cardLikeValueEl.setAttribute('id', `card-like-value${itemID}`)
             cardLikeValueEl.textContent = itemValue.likes
@@ -159,6 +149,16 @@ function appendCardToFeedEl(item) {
     cardFootertEl.append(cardLikeEl)
     cardDivEl.append(cardFootertEl)
     container.append(cardDivEl)
+
+    deleteEl.addEventListener("click", function() {
+        if (itemID === '-NpKZLA35od2G7qS8ntE' || itemID === '-NpKZLA8ILpSB_dLmRCY' || itemID === '-NpKZLA9vgG2GY8Hl9rV')
+            alert(`You cannot remove this Endorsement!`)
+        else {
+            alert(`Endorsement removed!`)
+            let exactLocationOfFeedInDB = ref(database, `feeds/${itemID}`)
+            remove(exactLocationOfFeedInDB)
+        }
+    })
 
     cardLikeEl.addEventListener("click", function() {
         console.log(`pressed like of card ${itemID}`)
@@ -176,9 +176,12 @@ function appendCardToFeedEl(item) {
         }
     })
 }
+
 function clearFeedEl() {
     container.innerHTML = ""
 }
+
+
 async function main() {
     onValue(feedsInDB, function(snapshot) {
         clearFeedEl()
@@ -191,17 +194,7 @@ async function main() {
             appendCardToFeedEl(currentFeed)
         }
     })
-
-
 }
 
 main()
 
-
-/*
-- publish new card when button clicked
-✓ render filled heart if in local true
-✓ add like in array if clicked and local == null
-✓ save clicked to local
-✓ render new total likes
-*/
