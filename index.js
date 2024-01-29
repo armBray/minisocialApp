@@ -2,9 +2,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebas
 import { getDatabase, ref, push, update, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 // import {appSettings ,DATABASE_NAME} from './firebaseConfig.js'
 
-const app = initializeApp(process.env.appSettings)
+const app = initializeApp(secrets.appSettings)
 const database = getDatabase(app)
-const feedsInDB = ref(database, process.env.DATABASE_NAME)
+const feedsInDB = ref(database, secrets.DATABASE_NAME)
 
 localStorage. clear();
 
