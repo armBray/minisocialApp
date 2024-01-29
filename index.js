@@ -93,7 +93,7 @@ feedDOM += `<div class="card" id='card-${i}'>
 */
 
 
-const container = document.getElementById("feeds")
+const feedContainer = document.getElementById("feeds")
 
 function appendCardToFeedEl(item) {
     let itemID = item[0]
@@ -148,7 +148,7 @@ function appendCardToFeedEl(item) {
 
     cardFootertEl.append(cardLikeEl)
     cardDivEl.append(cardFootertEl)
-    container.append(cardDivEl)
+    feedContainer.append(cardDivEl)
 
     deleteEl.addEventListener("click", function() {
         if (itemID === '-NpKZLA35od2G7qS8ntE' || itemID === '-NpKZLA8ILpSB_dLmRCY' || itemID === '-NpKZLA9vgG2GY8Hl9rV')
@@ -178,20 +178,28 @@ function appendCardToFeedEl(item) {
 }
 
 function clearFeedEl() {
-    container.innerHTML = ""
+    feedContainer.innerHTML = ""
+}
+
+function noItemsInDB() {
+    feedContainer.innerHTML = "No items here... yet"
 }
 
 
 async function main() {
     onValue(feedsInDB, function(snapshot) {
-        clearFeedEl()
-        let feedsArray = Object.entries(snapshot.val())
-        for (let i = 0; i < feedsArray.length; i++) {
-            let currentFeed = feedsArray[i]
-            let currentItemID = currentFeed[0]
-            let currentItemValue = currentFeed[1]
-            console.log(currentItemValue)
-            appendCardToFeedEl(currentFeed)
+        if (snapshot.exists()) {
+            clearFeedEl()
+            let feedsArray = Object.entries(snapshot.val())
+            for (let i = 0; i < feedsArray.length; i++) {
+                let currentFeed = feedsArray[i]
+                let currentItemID = currentFeed[0]
+                let currentItemValue = currentFeed[1]
+                console.log(currentItemValue)
+                appendCardToFeedEl(currentFeed)
+            }   
+        } else {
+            noItemsInDB()
         }
     })
 }
