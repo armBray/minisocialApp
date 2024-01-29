@@ -1,11 +1,37 @@
 <!doctype html>
 <html>
-    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-        <title>We are the Champions</title>
-        <link rel="stylesheet" href="index.css">
-    </head>
-    <body>
+
+<head>
+    <title>We are the Champions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="container">
+        <img id="logo" src="assets/freddie.png">
         <h1>We are the Champions</h1>
-        <script src="index.js"></script>
-    </body>
+        <div class="div-inputs">
+            <textarea id="text-endorsement" name="text-endorsement" rows="4" cols="50"
+                placeholder="Write your endorsement here" required></textarea>
+            <div class="input-sibling">
+                <input type="text" id="input-from" placeholder="From">
+                <input type="text" id="input-to" placeholder="To">
+            </div>
+            <button id="publish-button">Publish</button>
+
+        </div>
+        <h2>- Endorsement -</h2>
+        <div id="feeds"></div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
 </html>
