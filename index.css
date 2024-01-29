@@ -139,6 +139,7 @@ button {
 }
 
 #feeds {
+    width: 100%;
     max-width: 320px;
 
     display: flex;
@@ -154,7 +155,7 @@ button {
     align-items: start;
     row-gap: 0.5rem;
     
-    /* width: 100%; */
+    width: 100%;
     padding: 0.7rem;
 
     font-family: 'Inter';
